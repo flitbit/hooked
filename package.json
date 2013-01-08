@@ -1,0 +1,14 @@
+{
+	"name": "hooked",
+	"version": "0.1.0",
+	"author": "Phillip Clark <phillip@flitbit.com>",
+	"description": "A simple javascript/node.js module for attaching before and after hooks over functions.",
+	"dependencies": {
+	  "node-oops": "0.1.x"
+	},
+	"devDependencies": {
+		"vows": "0.7.x",
+		"should": "1.2.x"
+	},
+	"license": "MIT"
+}
