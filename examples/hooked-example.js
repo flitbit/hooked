@@ -111,7 +111,7 @@ keeper.authenticate({ username: 'me', password: 'my pw' }, function(err, res) {
 	console.log("authenticate callback: ".concat(util.inspect(err || res, false, 5)));
 });
 
-// successful...
+// unsuccessful...
 keeper.authenticate({ username: 'me', password: 'bull' }, function(err, res) {
 	console.log("authenticate callback: ".concat(util.inspect(err || res, false, 5)));
 });
