@@ -1,7 +1,7 @@
 var util = require('util')
 , events = require('events')
 , should = require('should')
-, oops   = require('oops')
+, oops   = require('node-oops')
 , Dbc    = oops.Dbc
 , hooked = require('../');
 

@@ -1,6 +1,6 @@
 var util = require('util')
 , assert = require('assert')
-, oops   = require('oops')
+, oops   = require('node-oops')
 , dbc    = oops.dbc
 , Hooks  = require('../').Hooks;
 
@@ -89,6 +89,9 @@ try {
 	assert.fail("Shouldn't have.");
 } catch(e) {
 	// Expected because the before hook has been disallowed.
+	if (!(e instanceof oops.ContractError)) {
+		throw e;
+	}
 }
 
 // `after` hook the store method...
