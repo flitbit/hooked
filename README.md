@@ -1,4 +1,5 @@
-# hooked
+# hooked [![Build Status](https://secure.travis-ci.org/flitbit/hooked.png)](http://travis-ci.org/flitbit/hooked)
+
 A simple javascript/node.js base type supporting before and after hooks over functions.
 
 _or should I say, yet another..._
