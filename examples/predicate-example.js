@@ -1,8 +1,8 @@
 var util = require('util')
 , assert = require('assert')
-, Hooks  = require('../').Hooks;
+, Hooked = require('../').Hooked;
 
-var logger  = new Hooks();
+var logger  = new Hooked();
 
 // observe the errors as they occur...
 logger.on('error', function(e) {
@@ -15,13 +15,15 @@ logger.on('canceled', function(e) {
 });
 
 // Add a function that logs what it is given...
-logger.log = function(what) {
+logger.log = function(what, callback) {
 	console.log("".concat(new Date().toISOString(), ": ", util.inspect(what, false, 10)));
+	callback();
 }
 
 // Add a hook that filters objects containing secrets from being logged...
-logger.before('log', function(a) {
+logger.before('log', function(a, next) {
 	var s = JSON.stringify(a);
+	process.nextTick(function() {next(null, a);});
 	return s.indexOf('secret') < 0;
 });
 
@@ -32,7 +34,9 @@ logger.log({ more: { data: [{ number: 5 }, { and: { a: 'secret'}}]}});
 logger.log("all done now");
 
 /*
-2013-01-10T15:16:44.626Z: 'Nothing important here.'
-2013-01-10T15:16:44.631Z: { some: { data: [ 'this', 'is', { number: 4 } ] } }
-2013-01-10T15:16:44.631Z: 'all done now'
+2013-01-12T18:22:28.856Z: observed canceled event - { error: 'canceled', method: 'log', reason: 'Canceled by predicate.' }
+2013-01-12T18:22:28.861Z: 'This is a secret, maybe I should be more discreet.'
+2013-01-12T18:22:28.861Z: observed canceled event - { error: 'canceled', method: 'log', reason: 'Canceled by predicate.' }
+2013-01-12T18:22:28.861Z: { more: { data: [ { number: 5 }, { and: { a: 'secret' } } ] } }
+2013-01-12T18:22:28.861Z: observed canceled event - { error: 'canceled', method: 'log', reason: 'Canceled by predicate.' }
 */

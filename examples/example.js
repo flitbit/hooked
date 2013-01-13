@@ -2,8 +2,8 @@ var util = require('util')
 , events = require('events')
 , should = require('should')
 , oops   = require('node-oops')
-, Dbc    = oops.Dbc
-, hooked = require('../');
+, hooked = require('../')
+;
 
 function appendPath(base, plus) {
 	if (typeof base !== 'string') { throw new TypeError('[String] base must be a string!'); }
@@ -23,7 +23,7 @@ function FakeHttpResource(baseUri) {
 	this.defines.enumerable
 	.value('baseUri', baseUri || 'http://127.0.0.1:3000');
 }
-FakeHttpResource.inherits(hooked.Hooks);
+FakeHttpResource.inherits(hooked.Hooked);
 
 /**
  * Simulate an HTTP GET...
@@ -55,8 +55,11 @@ FakeHttpResource.defines.configurable.enumerable
 var fake = new FakeHttpResource();
 
 // Any configurable method can be hooked...
-fake.before('get', function(path) {
-	return path.indexOf('ok') >= 0;
+fake.before('get', function(path, next) {
+	if (path.indexOf('ok') < 0) {
+		return false;
+	}
+	next(null, path);
 });
 
 // Hooked methods will emit 'error' events...
@@ -80,6 +83,3 @@ fake.get('ok-if-you-do', function(err, res) {
 fake.get('no-you-dont', function(err, res) {
 	util.log('got: '.concat(util.inspect(err || res)));
 });
-
-
-

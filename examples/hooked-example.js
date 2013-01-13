@@ -2,7 +2,7 @@ var util = require('util')
 , assert = require('assert')
 , oops   = require('node-oops')
 , dbc    = oops.dbc
-, Hooks  = require('../').Hooks;
+, Hooked = require('../').Hooked;
 
 var keeper = (function() {
 	var _store = {};
@@ -19,7 +19,7 @@ var keeper = (function() {
 			noevent: ["logAttempt"]
 		});
 	}
-	Passwords.inherits(Hooks);
+	Passwords.inherits(Hooked);
 
 	function store(creds, callback) {
 		dbc([creds, typeof creds.username === 'string'],"Credentails must contain a `username`.");
@@ -44,7 +44,7 @@ var keeper = (function() {
 
 	function logAttempt(logEntry, callback) {
 		console.log("fake log sink: ".concat(util.inspect(logEntry, false, 5)));
-		callback();
+		callback(null, logEntry);
 	}
 
 	function authenticate(creds, callback) {
