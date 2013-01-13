@@ -3,7 +3,7 @@ A simple javascript/node.js base type supporting before and after hooks over fun
 
 _or should I say, yet another..._
 
-You may have landed here while looking for the widely used [`hooks` module](https://github.com/bnoguchi/hooks-js). This implementation is a [*clean-room*](http://www.epiclaw.net/blog/2008/10/23/clean-room-defeats-software-infringement-claim-us-federal-court) implementation, similar in scope, that I put together as a base class used across many of my other modules. Of note are the options related to which methods are eligible for hooks.
+You may have landed here while looking for the widely used [`hooks` module](https://github.com/bnoguchi/hooks-js). This is a [*clean-room*](http://www.epiclaw.net/blog/2008/10/23/clean-room-defeats-software-infringement-claim-us-federal-court) implementation, similar in scope, that I put together as a base class used across many of my other modules. Of note are the options related to which methods are eligible for hooks.
 
 ##Features
 
