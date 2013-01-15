@@ -24,7 +24,7 @@
 		"should": "1.2.x"
 	},
 	"scripts": {
-		"test": "node test"
+		"test": "vows --spec test"
 	},
 	"license": "MIT"
 }
