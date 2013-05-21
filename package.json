@@ -1,6 +1,6 @@
 {
 	"name": "hooked",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"description": "A simple javascript/node.js base type supporting before and after hooks over functions.",
 	"keywords": [
 		"pipe",
@@ -26,5 +26,9 @@
 	"scripts": {
 		"test": "vows --spec test"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/flitbit/hooked"
+	}
 }
